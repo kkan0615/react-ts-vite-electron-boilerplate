@@ -20,9 +20,9 @@ export const createAppWindow = async () => {
     },
   })
 
-  const pageUrl = isDev
-    ? 'http://localhost:5173'
-    : new URL('../dist/renderer/index.html', `file://${__dirname}`).toString()
+  const pageUrl = isDev ?
+    process.env['VITE_DEV_SERVER_URL'] || 'http://localhost:5173' :
+    new URL('../dist/renderer/index.html', `file://${__dirname}`).toString()
 
   if (isDev) {
     // Open chrome devtools

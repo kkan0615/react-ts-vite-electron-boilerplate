@@ -3,7 +3,6 @@ import { join } from 'path'
 import { builtinModules } from 'module'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import { fileURLToPath } from 'url'
 
 export default defineConfig({
   plugins: [react()],
@@ -22,8 +21,9 @@ export default defineConfig({
     },
   },
   resolve: {
-    alias: {
-      // '@': fileURLToPath(new URL('./src', import.meta.url)),
-    }
+    alias: [{
+      find: '@',
+      replacement: join(__dirname, 'src'),
+    }]
   }
 })
